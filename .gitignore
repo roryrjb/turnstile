@@ -1,2 +1,4 @@
 /turnstile
+/ddb/usr/
+/output/
 *.o

@@ -21,4 +21,10 @@ clean:
 dependencies:
 	sudo apt install -y libfcgi-dev libmarkdown2-dev
 
-.PHONY: clean dependencies
+deb: build
+	mkdir -p output
+	mkdir -p ddb/usr/local/bin/
+	cp -v $(BIN) ddb/usr/local/bin/
+	ddb -t ddb -o output
+
+.PHONY: clean dependencies deb
