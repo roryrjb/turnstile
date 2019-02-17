@@ -4,7 +4,7 @@
 
 ### Usage
 
-__Example usage using Nginx:
+__Example usage using Nginx:__
 
 ```bash
 $ turnstile --host localhost --port 9123
