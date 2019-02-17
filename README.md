@@ -19,7 +19,7 @@ http {
         # ...
 
         location ~ \.md$ {
-            include fastcgi.conf;
+            include fastcgi_params;
             fastcgi_pass localhost:9123;
         }
     }

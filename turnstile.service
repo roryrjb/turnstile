@@ -1,0 +1,11 @@
+[Unit]
+Description=Markdown FastCGI server
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/turnstile
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

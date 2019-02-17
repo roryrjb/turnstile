@@ -24,7 +24,9 @@ dependencies:
 deb: build
 	mkdir -p output
 	mkdir -p ddb/usr/local/bin/
+	mkdir -p ddb/etc/systemd/system/
 	cp -v $(BIN) ddb/usr/local/bin/
+	cp turnstile.service ddb/etc/systemd/system/
 	ddb -t ddb -o output
 
 .PHONY: clean dependencies deb

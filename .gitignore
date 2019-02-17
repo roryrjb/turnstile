@@ -1,4 +1,5 @@
 /turnstile
 /ddb/usr/
+/ddb/etc/
 /output/
 *.o

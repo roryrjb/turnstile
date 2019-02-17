@@ -12,7 +12,7 @@
 #include <unistd.h>
 
 #define NAME "turnstile"
-#define VERSION "0.0.1"
+#define VERSION "0.0.2"
 
 int
 version(char* error)
@@ -35,7 +35,7 @@ usage(char *error)
         fprintf(stderr, "  --host HOSTNAME      set host (default: \"localhost\")\n");
         fprintf(stderr, "  --port PORT          set listening port (default: 9000)\n");
         fprintf(stderr, "  -v[v]                be [more]verbose\n");
-        fprintf(stderr, "\n\n");
+        fprintf(stderr, "\n");
         return 0;
 }
 
@@ -114,11 +114,12 @@ main(int argc, char **argv)
         while (FCGX_Accept_r(&req) == 0) {
                 char path[256];
                 char *code = "200 OK";
-                path[0] = '.';
-                path[1] = '\0';
+                path[0] = '\0';
 
+                char *document_root = FCGX_GetParam("DOCUMENT_ROOT", req.envp);
                 char *document_uri = FCGX_GetParam("DOCUMENT_URI", req.envp);
 
+                strcat(path, document_root);
                 strcat(path, document_uri);
 
                 if (v >= 2) printf("trying path '%s'", path);
@@ -145,7 +146,7 @@ main(int argc, char **argv)
 
                 if (md_file != NULL) {
                         MMIOT *md = mkd_in(md_file, 0);
-                        mkd_compile(md, 0);
+                        mkd_compile(md, MKD_FENCEDCODE);
                         mkd_document(md, &md_buffer);
 
                         int i;
